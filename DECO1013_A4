@@ -1,0 +1,25 @@
+import microbit
+from ultrasonic import *
+import music
+import neopixel
+np = neopixel.NeoPixel(pin2, 30)
+rf = Rangefinder(pin1)
+while True:
+    dist = rf.distance_cm()   
+    if dist < 30:
+        #dist = rf.distance_cm()
+        print(dist)
+        display.show(Image.ARROW_N)
+  music.play('c4:1')
+        sleep(dist*20)
+    else:
+  for pixel_id in range(0, len(np)):
+            np[pixel_id] = (255, 0, 0)
+            np.show()
+   display.show(Image.HEART)
+            sleep(30)
+   display.show(Image.HEART_SMALL)
+  np.clear()   
+    while microbit.button_b.is_pressed():
+         np.clear()
+         music.play(music.ODE)
